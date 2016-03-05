@@ -56,6 +56,10 @@
       <Project>{254c4bde-a72b-4bd9-99ac-ad857064eda9}</Project>
       <Name>KellyHelper.Console</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KellyHelper.Helpers\KellyHelper.Helpers.csproj">
+      <Project>{3B84CFA5-C083-4F6B-AEA4-367C2C3DEE48}</Project>
+      <Name>KellyHelper.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

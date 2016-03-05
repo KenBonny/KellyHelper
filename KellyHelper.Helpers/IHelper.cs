@@ -1,8 +1,8 @@
 ﻿using System.IO;
 
-namespace Kenbo.KellyHelper.UI
+namespace Kenbo.KellyHelper.Helpers
 {
-    internal interface IHelper
+    public interface IHelper
     {
         string Description { get; }
 

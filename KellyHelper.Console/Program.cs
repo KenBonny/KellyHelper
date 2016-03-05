@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac;
+using Kenbo.KellyHelper.Helpers;
 
 namespace Kenbo.KellyHelper.UI
 {
@@ -20,6 +21,7 @@ namespace Kenbo.KellyHelper.UI
 
         private static void PrintChoice(IDictionary<int, IHelper> helpers)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Please choose the help you need:");
             foreach (var helper in helpers)
             {
@@ -27,6 +29,7 @@ namespace Kenbo.KellyHelper.UI
             }
 
             Console.WriteLine(" 0 > Exit");
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         private static void RunHelper(IHelper helper)
@@ -34,8 +37,11 @@ namespace Kenbo.KellyHelper.UI
             bool runAgain;
             do
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(helper.Description);
                 Console.WriteLine(new string('-', helper.Description.Length));
+                Console.ForegroundColor = ConsoleColor.Gray;
+
                 helper.Run(Console.Out, Console.In);
                 Console.Write("Run again? (Yes or No, default Yes) ");
                 var line = Console.ReadLine();

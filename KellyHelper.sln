@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KellyHelper.Console", "Kell
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KellyHelper.Tests", "KellyHelper.Tests\KellyHelper.Tests.csproj", "{1B6A29AF-1D85-4668-9E86-EA4082602BB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KellyHelper.Helpers", "KellyHelper.Helpers\KellyHelper.Helpers.csproj", "{3B84CFA5-C083-4F6B-AEA4-367C2C3DEE48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1B6A29AF-1D85-4668-9E86-EA4082602BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B6A29AF-1D85-4668-9E86-EA4082602BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B6A29AF-1D85-4668-9E86-EA4082602BB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B84CFA5-C083-4F6B-AEA4-367C2C3DEE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B84CFA5-C083-4F6B-AEA4-367C2C3DEE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B84CFA5-C083-4F6B-AEA4-367C2C3DEE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B84CFA5-C083-4F6B-AEA4-367C2C3DEE48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
