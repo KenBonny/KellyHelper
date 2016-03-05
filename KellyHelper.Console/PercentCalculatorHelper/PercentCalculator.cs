@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Kenbo.KellyHelper.Console.PercentCalculatorHelper
+namespace Kenbo.KellyHelper.UI.PercentCalculatorHelper
 {
     public class PercentCalculator : IHelper
     {

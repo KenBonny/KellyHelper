@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using Kenbo.KellyHelper.Console.PercentCalculatorHelper;
+using Kenbo.KellyHelper.UI.PercentCalculatorHelper;
 
-namespace Kenbo.KellyHelper.Console
+namespace Kenbo.KellyHelper.UI
 {
     internal class Setup
     {

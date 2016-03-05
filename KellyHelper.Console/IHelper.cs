@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Kenbo.KellyHelper.Console
+namespace Kenbo.KellyHelper.UI
 {
     internal interface IHelper
     {

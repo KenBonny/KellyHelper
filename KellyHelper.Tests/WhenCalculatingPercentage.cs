@@ -1,5 +1,5 @@
-﻿using Xunit;
-using Kenbo.KellyHelper.Console.PercentCalculatorHelper;
+﻿using Kenbo.KellyHelper.UI.PercentCalculatorHelper;
+using Xunit;
 using Shouldly;
 
 

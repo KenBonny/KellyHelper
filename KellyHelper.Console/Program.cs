@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Autofac;
 
-namespace Kenbo.KellyHelper.Console
+namespace Kenbo.KellyHelper.UI
 {
     public class Program
     {
@@ -20,13 +20,13 @@ namespace Kenbo.KellyHelper.Console
 
         private static void PrintChoice(IDictionary<int, IHelper> helpers)
         {
-            System.Console.WriteLine("Please choose the help you need:");
+            Console.WriteLine("Please choose the help you need:");
             foreach (var helper in helpers)
             {
-                System.Console.WriteLine($" {helper.Key} > {helper.Value.Description}");
+                Console.WriteLine($" {helper.Key} > {helper.Value.Description}");
             }
 
-            System.Console.WriteLine(" 0 > Exit");
+            Console.WriteLine(" 0 > Exit");
         }
 
         private static void RunHelper(IHelper helper)
@@ -34,12 +34,12 @@ namespace Kenbo.KellyHelper.Console
             bool runAgain;
             do
             {
-                System.Console.WriteLine(helper.Description);
-                System.Console.WriteLine(new string('-', helper.Description.Length));
-                helper.Run(System.Console.Out, System.Console.In);
-                System.Console.Write("Run again? (Yes or No, default Yes) ");
-                var line = System.Console.ReadLine();
-                System.Console.WriteLine();
+                Console.WriteLine(helper.Description);
+                Console.WriteLine(new string('-', helper.Description.Length));
+                helper.Run(Console.Out, Console.In);
+                Console.Write("Run again? (Yes or No, default Yes) ");
+                var line = Console.ReadLine();
+                Console.WriteLine();
 
                 runAgain = string.IsNullOrWhiteSpace(line) ||
                            line.Equals("y", StringComparison.InvariantCultureIgnoreCase) ||
@@ -53,11 +53,11 @@ namespace Kenbo.KellyHelper.Console
             bool invalidInteger;
             do
             {
-                System.Console.Write("Choose helper: ");
-                var line = System.Console.ReadLine();
+                Console.Write("Choose helper: ");
+                var line = Console.ReadLine();
                 invalidInteger = string.IsNullOrWhiteSpace(line) || !int.TryParse(line, out position);
             } while (invalidInteger || position > max);
-            System.Console.WriteLine();
+            Console.WriteLine();
 
             return position;
         }
