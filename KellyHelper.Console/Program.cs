@@ -34,9 +34,13 @@ namespace Kenbo.KellyHelper.Console
             bool runAgain;
             do
             {
+                System.Console.WriteLine(helper.Description);
+                System.Console.WriteLine(new string('-', helper.Description.Length));
                 helper.Run(System.Console.Out, System.Console.In);
-                System.Console.Write("Back to main screen? (Yes or No, default No) ");
+                System.Console.Write("Run again? (Yes or No, default Yes) ");
                 var line = System.Console.ReadLine();
+                System.Console.WriteLine();
+
                 runAgain = string.IsNullOrWhiteSpace(line) ||
                            line.Equals("y", StringComparison.InvariantCultureIgnoreCase) ||
                            line.Equals("yes", StringComparison.InvariantCultureIgnoreCase);
@@ -53,6 +57,7 @@ namespace Kenbo.KellyHelper.Console
                 var line = System.Console.ReadLine();
                 invalidInteger = string.IsNullOrWhiteSpace(line) || !int.TryParse(line, out position);
             } while (invalidInteger || position > max);
+            System.Console.WriteLine();
 
             return position;
         }
