@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Kenbo.KellyHelper.UI.PercentCalculatorHelper;
+using Kenbo.KellyHelper.Helpers.PercentCalculatorHelper;
 
 namespace Kenbo.KellyHelper.UI
 {
