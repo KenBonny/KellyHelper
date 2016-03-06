@@ -57,7 +57,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files\7-Zip\7z.exe" a -tzip "C:\Users\kenbo\Dropbox\Kelly\$(SolutionName).zip" "$(TargetPath)" "$(SolutionDir)$(TargetName)\$(OutDir)*.dll"</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Release "C:\Program Files\7-Zip\7z.exe" a -tzip "C:\Users\kenbo\Dropbox\Kelly\$(SolutionName).zip" "$(TargetPath)" "$(SolutionDir)$(TargetName)\$(OutDir)*.dll"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
