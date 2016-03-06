@@ -19,6 +19,20 @@ namespace Kenbo.KellyHelper.UI
             }
         }
 
+        private static IDictionary<int, IHelper> GetHelpers()
+        {
+            var helpers = Setup.CreateContainer().Resolve<IEnumerable<IHelper>>();
+            var position = 1;
+            var dictionary = new Dictionary<int, IHelper>();
+            foreach (var helper in helpers)
+            {
+                dictionary.Add(position, helper);
+                position++;
+            }
+
+            return dictionary;
+        } 
+
         private static void PrintChoice(IDictionary<int, IHelper> helpers)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -30,27 +44,6 @@ namespace Kenbo.KellyHelper.UI
 
             Console.WriteLine(" 0 > Exit");
             Console.ForegroundColor = ConsoleColor.Gray;
-        }
-
-        private static void RunHelper(IHelper helper)
-        {
-            bool runAgain;
-            do
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine(helper.Description);
-                Console.WriteLine(new string('-', helper.Description.Length));
-                Console.ForegroundColor = ConsoleColor.Gray;
-
-                helper.Run(Console.Out, Console.In);
-                Console.Write("Run again? (Yes or No, default Yes) ");
-                var line = Console.ReadLine();
-                Console.WriteLine();
-
-                runAgain = string.IsNullOrWhiteSpace(line) ||
-                           line.Equals("y", StringComparison.InvariantCultureIgnoreCase) ||
-                           line.Equals("yes", StringComparison.InvariantCultureIgnoreCase);
-            } while (runAgain);
         }
 
         private static int GetPosition(int max)
@@ -66,20 +59,48 @@ namespace Kenbo.KellyHelper.UI
             Console.WriteLine();
 
             return position;
-        }
+        } 
 
-        private static IDictionary<int, IHelper> GetHelpers()
+        private static void RunHelper(IHelper helper)
         {
-            var helpers = Setup.CreateContainer().Resolve<IEnumerable<IHelper>>();
-            var position = 1;
-            var dictionary = new Dictionary<int, IHelper>();
-            foreach (var helper in helpers)
+            bool runAgain;
+            do
             {
-                dictionary.Add(position, helper);
-                position++;
-            }
 
-            return dictionary;
-        }  
+                try
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(helper.Description);
+                    Console.WriteLine(new string('-', helper.Description.Length));
+                    Console.ForegroundColor = ConsoleColor.Gray;
+
+                    helper.Run(Console.Out, Console.In);
+                }
+                catch (Exception exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(exception.Message);
+                    var inner = exception.InnerException;
+                    while (inner != null)
+                    {
+                        Console.WriteLine($" > {inner.Message}");
+                        Console.WriteLine();
+                        inner = inner.InnerException;
+                    }
+
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                }
+                finally
+                {
+                    Console.Write("Run again? (Yes or No, default Yes) ");
+                    var line = Console.ReadLine();
+                    Console.WriteLine();
+
+                    runAgain = string.IsNullOrWhiteSpace(line) ||
+                               line.Equals("y", StringComparison.InvariantCultureIgnoreCase) ||
+                               line.Equals("yes", StringComparison.InvariantCultureIgnoreCase);
+                }
+            } while (runAgain);
+        }
     }
 }
