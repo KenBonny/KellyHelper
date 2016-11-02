@@ -56,6 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeParserTests.cs" />
+    <Compile Include="DaysBetweenDatesCaculatorTests.cs" />
     <Compile Include="WhenCalculatingPercentage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

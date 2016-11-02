@@ -34,8 +34,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateRangeCalculator\DaysBetweenDatesCalculator.cs" />
+    <Compile Include="DateRangeCalculator\DaysBetweenDatesCalculatorHelper.cs" />
+    <Compile Include="HelperClasses\DateTimeParser.cs" />
     <Compile Include="IHelper.cs" />
-    <Compile Include="PercentCalculatorHelper\PercentCalculator.cs" />
+    <Compile Include="PercentCalculatorHelper\PercentCalculatorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

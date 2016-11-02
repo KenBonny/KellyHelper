@@ -2,7 +2,7 @@
 
 namespace Kenbo.KellyHelper.Helpers.PercentCalculatorHelper
 {
-    public class PercentCalculator : IHelper
+    public class PercentCalculatorHelper : IHelper
     {
         public string Description
         {
@@ -11,8 +11,8 @@ namespace Kenbo.KellyHelper.Helpers.PercentCalculatorHelper
 
         public void Run(TextWriter writer, TextReader reader)
         {
-            var value = GetValue("Calculate percentage for");
-            var total = GetValue("From total");
+            var value = GetValue(writer, reader, "Calculate percentage for");
+            var total = GetValue(writer, reader, "From total");
             var percent = CalculatePercentage(value, total);
             writer.WriteLine($"Is {percent:F2}%");
         }
@@ -22,14 +22,14 @@ namespace Kenbo.KellyHelper.Helpers.PercentCalculatorHelper
             return value/total*100;
         }
 
-        private static double GetValue(string text)
+        private static double GetValue(TextWriter writer, TextReader reader, string text)
         {
             double value = 0;
             bool invalidInteger;
             do
             {
-                System.Console.Write($"{text}: ");
-                var line = System.Console.ReadLine();
+                writer.Write($"{text}: ");
+                var line = reader.ReadLine();
                 invalidInteger = string.IsNullOrWhiteSpace(line) || !double.TryParse(line, out value);
             } while (invalidInteger);
 

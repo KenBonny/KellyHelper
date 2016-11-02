@@ -7,11 +7,11 @@ namespace Kenbo.KellyHelper.Tests
 {
     public class WhenCalculatingPercentage
     {
-        private readonly PercentCalculator _calculator;
+        private readonly PercentCalculatorHelper _calculator;
 
         public WhenCalculatingPercentage()
         {
-            _calculator = new PercentCalculator();
+            _calculator = new PercentCalculatorHelper();
         }
 
         [Theory]
