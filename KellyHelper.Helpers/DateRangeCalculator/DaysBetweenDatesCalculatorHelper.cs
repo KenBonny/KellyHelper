@@ -1,38 +1,23 @@
 ﻿using System;
 using System.IO;
-using Kenbo.KellyHelper.Helpers.HelperClasses;
 
 namespace Kenbo.KellyHelper.Helpers.DateRangeCalculator
 {
-    public class DaysBetweenDatesCalculatorHelper : IHelper
+    public class DaysBetweenDatesCalculatorHelper : Helper
     {
-        public string Description => "Calculates the number of days between two dates.";
-
-        public void Run(TextWriter writer, TextReader reader)
+        public DaysBetweenDatesCalculatorHelper(TextReader reader, TextWriter writer) : base(reader, writer)
         {
-            var firstDate = GetDate(writer, reader, "First date: ");
-            var secondDate = GetDate(writer, reader, "Second date: ");
-            
-            var caluclator = new DaysBetweenDatesCalculator();
-            var days = caluclator.CalculateDays(firstDate, secondDate);
-            writer.WriteLine($"Days between dates: {days}");
         }
 
-        private DateTime GetDate(TextWriter writer, TextReader reader, string message)
-        {
-            Tuple<bool, DateTime> date;
-            do
-            {
-                writer.Write(message);
-                var line = reader.ReadLine();
-                date = DateTimeParser.ConvertToDate(line);
-                if (!date.Item1)
-                {
-                    writer.WriteLine("Invalid date format.");
-                }
-            } while (!date.Item1);
+        public override string Description => "Calculate the number of days between two dates.";
 
-            return date.Item2;
+        public override void Run()
+        {
+            var firstDate = GetValue<DateTime>("First date: ");
+            var secondDate = GetValue<DateTime>("Second date: ");
+            
+            var days = DaysBetweenDatesCalculator.CalculateDays(firstDate, secondDate);
+            Writer.WriteLine($"Days between dates: {days}");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Kenbo.KellyHelper.Helpers.PercentCalculatorHelper;
+﻿using System.IO;
+using FakeItEasy;
+using Kenbo.KellyHelper.Helpers.PercentCalculatorHelper;
 using Xunit;
 using Shouldly;
 
@@ -11,7 +13,9 @@ namespace Kenbo.KellyHelper.Tests
 
         public WhenCalculatingPercentage()
         {
-            _calculator = new PercentCalculatorHelper();
+            var textReader = A.Fake<TextReader>();
+            var textWriter = A.Fake<TextWriter>();
+            _calculator = new PercentCalculatorHelper(textReader, textWriter);
         }
 
         [Theory]
@@ -19,7 +23,7 @@ namespace Kenbo.KellyHelper.Tests
         [InlineData(5, 200, 2.50)]
         [InlineData(1.8, 199.54, .9)]
         [InlineData(21.24, 2565.82, 0.82)]
-        public void CalculatePercentageTheory(double value, double total, double result)
+        public void CalculatePercentage(double value, double total, double result)
         {
             var percentage = _calculator.CalculatePercentage(value, total);
             percentage.ShouldBe(result, 2);

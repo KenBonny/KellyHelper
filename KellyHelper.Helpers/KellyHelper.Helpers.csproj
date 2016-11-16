@@ -36,8 +36,7 @@
   <ItemGroup>
     <Compile Include="DateRangeCalculator\DaysBetweenDatesCalculator.cs" />
     <Compile Include="DateRangeCalculator\DaysBetweenDatesCalculatorHelper.cs" />
-    <Compile Include="HelperClasses\DateTimeParser.cs" />
-    <Compile Include="IHelper.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="PercentCalculatorHelper\PercentCalculatorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

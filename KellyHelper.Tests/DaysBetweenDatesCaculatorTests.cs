@@ -11,11 +11,11 @@ namespace Kenbo.KellyHelper.Tests
         [MemberData(nameof(DatesAndExpectedDays))]
         public void Calculate_correct_number_of_days(DateTime first, DateTime second, int expectedDays)
         {
-            var calculator = new DaysBetweenDatesCalculator();
-            var calculatedDays = calculator.CalculateDays(first, second);
+            var calculatedDays = DaysBetweenDatesCalculator.CalculateDays(first, second);
             Assert.Equal(expectedDays, calculatedDays);
         }
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public static IEnumerable<object[]> DatesAndExpectedDays => new[]
         {
             new object[] {new DateTime(2016, 1, 1), new DateTime(2016, 2, 1), 31},

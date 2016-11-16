@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac;
+using Autofac.Builder;
 using Kenbo.KellyHelper.Helpers;
 
 namespace Kenbo.KellyHelper.UI
 {
     public class Program
     {
-        static void Main()
+        public static void Main()
         {
             var helpers = GetHelpers();
             while (true)
             {
                 PrintChoice(helpers);
                 var position = GetPosition(helpers.Count);
-                if (position == 0) break;
+                if (position == 0)
+                    break;
                 RunHelper(helpers[position]);
             }
         }
 
-        private static IDictionary<int, IHelper> GetHelpers()
+        private static IDictionary<int, Helper> GetHelpers()
         {
-            var helpers = Setup.CreateContainer().Resolve<IEnumerable<IHelper>>();
+            var helpers = Setup.CreateContainer().Resolve<IEnumerable<Helper>>();
             var position = 1;
-            var dictionary = new Dictionary<int, IHelper>();
+            var dictionary = new Dictionary<int, Helper>();
             foreach (var helper in helpers)
             {
                 dictionary.Add(position, helper);
@@ -33,17 +35,17 @@ namespace Kenbo.KellyHelper.UI
             return dictionary;
         } 
 
-        private static void PrintChoice(IDictionary<int, IHelper> helpers)
+        private static void PrintChoice(IDictionary<int, Helper> helpers)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Please choose the help you need:");
+            const ConsoleColor green = ConsoleColor.Green;
+            WriteLineInColor("Please choose the help you need:", green);
+            WriteLineInColor(" 0 > Exit", green);
+
             foreach (var helper in helpers)
             {
-                Console.WriteLine($" {helper.Key} > {helper.Value.Description}");
+                var message = $" {helper.Key} > {helper.Value.Description}";
+                WriteLineInColor(message, green);
             }
-
-            Console.WriteLine(" 0 > Exit");
-            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         private static int GetPosition(int max)
@@ -61,7 +63,7 @@ namespace Kenbo.KellyHelper.UI
             return position;
         } 
 
-        private static void RunHelper(IHelper helper)
+        private static void RunHelper(Helper helper)
         {
             bool runAgain;
             do
@@ -69,26 +71,22 @@ namespace Kenbo.KellyHelper.UI
 
                 try
                 {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(helper.Description);
-                    Console.WriteLine(new string('-', helper.Description.Length));
-                    Console.ForegroundColor = ConsoleColor.Gray;
-
-                    helper.Run(Console.Out, Console.In);
+                    WriteLineInColor(helper.Description, ConsoleColor.White);
+                    WriteLineInColor(new string('-', helper.Description.Length), ConsoleColor.White);
+                    helper.Run();
                 }
                 catch (Exception exception)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(exception.Message);
+                    const ConsoleColor red = ConsoleColor.Red;
+                    WriteLineInColor(exception.Message, red);
+
                     var inner = exception.InnerException;
                     while (inner != null)
                     {
-                        Console.WriteLine($" > {inner.Message}");
+                        WriteLineInColor($" > {inner.Message}", red);
                         Console.WriteLine();
                         inner = inner.InnerException;
                     }
-
-                    Console.ForegroundColor = ConsoleColor.Gray;
                 }
                 finally
                 {
@@ -101,6 +99,13 @@ namespace Kenbo.KellyHelper.UI
                                line.Equals("yes", StringComparison.InvariantCultureIgnoreCase);
                 }
             } while (runAgain);
+        }
+
+        private static void WriteLineInColor(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }

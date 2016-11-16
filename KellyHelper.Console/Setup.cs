@@ -1,6 +1,7 @@
-﻿using Autofac;
-using Kenbo.KellyHelper.Helpers.DateRangeCalculator;
-using Kenbo.KellyHelper.Helpers.PercentCalculatorHelper;
+﻿using System;
+using System.IO;
+using Autofac;
+using Kenbo.KellyHelper.Helpers;
 
 namespace Kenbo.KellyHelper.UI
 {
@@ -10,8 +11,12 @@ namespace Kenbo.KellyHelper.UI
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<PercentCalculatorHelper>().AsImplementedInterfaces();
-            builder.RegisterType<DaysBetweenDatesCalculatorHelper>().AsImplementedInterfaces();
+            builder.RegisterInstance(Console.In).As<TextReader>();
+            builder.RegisterInstance(Console.Out).As<TextWriter>();
+
+            builder.RegisterAssemblyTypes(typeof(Helper).Assembly)
+                .Where(type => type.IsSubclassOf(typeof(Helper)))
+                .As<Helper>();
 
             return builder.Build();
         }
