@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../..">
+      <sourceFolder url="file://$MODULE_DIR$/../../KellyHelper.Console" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../KellyHelper.Helpers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../KellyHelper.Tests" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../KellyHelper.Console/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../KellyHelper.Console/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../KellyHelper.Helpers/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../KellyHelper.Helpers/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../KellyHelper.Tests/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../KellyHelper.Tests/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../packages" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
